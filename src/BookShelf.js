@@ -5,7 +5,9 @@ import PropTypes from 'prop-types';
 class BookShelf extends React.Component {
 
   render() {
-    const {title, books} = this.props;
+
+    const { title, onShelfChange, books } = this.props
+  
     return (
       <div className="bookshelf">
         <h2 className="bookshelf-title">{title}</h2>
@@ -14,7 +16,8 @@ class BookShelf extends React.Component {
           {books.map((book, index) => (
               <li key={index}>
                 <Book
-                  { ...book }
+                  book={book}
+                  onShelfChange={onShelfChange}
                 />
               </li>
             ))}
@@ -27,7 +30,8 @@ class BookShelf extends React.Component {
 
 BookShelf.propTypes = {
   title: PropTypes.string,
-  books: PropTypes.array
+  onShelfChange: PropTypes.func,
+  books: PropTypes.object
 }
 
 export default BookShelf;

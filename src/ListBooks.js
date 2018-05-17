@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 class ListBooks extends React.Component {
 
   render() {
-    const {title, books} = this.props;
+    const {books, onShelfChange} = this.props;
 
     let bookShelvesTitles = [
       { currentlyReading: "Currently Reading" },
@@ -23,7 +23,7 @@ class ListBooks extends React.Component {
     return (
       <div className="list-books">
         <div className="list-books-title">
-          <h1>{title}</h1>
+          <h1>MyReads</h1>
         </div>
         <div className="list-books-content">
           <div>
@@ -32,6 +32,7 @@ class ListBooks extends React.Component {
                   key={index}
                   title={obj[Object.keys(obj)[0]]}
                   books={bookShelvesBooks[index]}
+                  onShelfChange={onShelfChange}
                 />
               ))
              }
@@ -46,8 +47,8 @@ class ListBooks extends React.Component {
 }
 
 ListBooks.propTypes = {
-  title: PropTypes.string,
-  books: PropTypes.array
+  books: PropTypes.array,
+  onShelfChange: PropTypes.func
 }
 
 export default ListBooks;

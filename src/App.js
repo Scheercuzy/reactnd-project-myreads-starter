@@ -5,9 +5,14 @@ import { Route } from 'react-router-dom'
 import './App.css'
 
 class BooksApp extends React.Component {
-  state = {
-    title: "",
-    books: []
+
+  constructor(props) {
+    super(props);
+    this.onShelfChange = this.onShelfChange.bind(this);
+
+    this.state = {
+      books: []
+    }
   }
 
   componentDidMount() {
@@ -16,11 +21,23 @@ class BooksApp extends React.Component {
     })
   }
 
+  onShelfChange(book, event) {
+    let shelf = event.target.value
+
+    BooksAPI.update(book, shelf).then(() => {
+      this.setState(({ books }) => ({
+        books: books.filter(b => b.id !== book.id).concat([
+          Object.assign({}, book, { shelf })
+        ])
+      }));
+    });
+  }
+
   render() {
     return (
       <div className="app">
         <Route to='/' render={() => (
-          <ListBooks title="MyReads" books={this.state.books}/>
+          <ListBooks books={this.state.books} onShelfChange={this.onShelfChange} />
         )}/>
         <Route to='/search' render={() => (
           <div className="search-books">

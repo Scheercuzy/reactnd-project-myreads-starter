@@ -1,11 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class BookShelfChanger extends React.Component {
 
 	render() {
+		const {onShelfChange, book} = this.props;
+
 		return (
 			<div className="book-shelf-changer">
-				<select>
+				<select defaultValue={book.shelf || "none"} onChange={event => onShelfChange(book, event)}>
 					<option value="none" disabled>Move to...</option>
 					<option value="currentlyReading">Currently Reading</option>
 					<option value="wantToRead">Want to Read</option>
@@ -16,5 +19,10 @@ class BookShelfChanger extends React.Component {
 		)
 	}
 }
+
+BookShelfChanger.propTypes = {
+	book: PropTypes.object,
+	onShelfChange: PropTypes.func
+  }
 
 export default BookShelfChanger;

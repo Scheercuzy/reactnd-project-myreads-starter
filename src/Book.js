@@ -5,29 +5,28 @@ import PropTypes from 'prop-types';
 class Book extends React.Component {
 
   render() {
-    const {title, authors, imageLinks} = this.props;
+    const {book, onShelfChange} = this.props;
 
     return (
       <div className="book">
         <div className="book-top">
           <div 
             className="book-cover"
-            style={{ backgroundImage: `url("${imageLinks.thumbnail}")` }}
+            style={{ backgroundImage: `url("${book.imageLinks.thumbnail}")` }}
           >
           </div>
-          <BookShelfChanger />
+          <BookShelfChanger book={book} onShelfChange={onShelfChange} />
         </div>
-        <div className="book-title">{title}</div>
-        <div className="book-authors">{authors.join(', ')}</div>
+        <div className="book-title">{book.title}</div>
+        <div className="book-authors">{book.authors.join(', ')}</div>
       </div>
     )
   }
 }
 
 Book.propTypes = {
-  title: PropTypes.string,
-  authors: PropTypes.array,
-  imageLinks: PropTypes.string
+  book: PropTypes.object,
+  onShelfChange: PropTypes.func
 }
 
 export default Book;
