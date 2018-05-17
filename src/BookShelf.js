@@ -31,7 +31,7 @@ class BookShelf extends React.Component {
 BookShelf.propTypes = {
   title: PropTypes.string,
   onShelfChange: PropTypes.func,
-  books: PropTypes.object
+  books: PropTypes.array
 }
 
 export default BookShelf;
