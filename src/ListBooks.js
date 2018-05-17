@@ -7,12 +7,16 @@ class ListBooks extends React.Component {
   render() {
     const {title, books} = this.props;
 
-    const bookShelvesTitles = ['currentlyReading', 'wantToRead', 'read']
+    let bookShelvesTitles = [
+      { currentlyReading: "Currently Reading" },
+      { wantToRead: "Want to Read"} ,
+      {read: "Read"}
+    ];
     let bookShelvesBooks = []
 
-    bookShelvesTitles.map((title, index) => {
+    bookShelvesTitles.map((obj, index) => {
       return bookShelvesBooks[index] = books.filter(book => {
-        return book.shelf === title
+        return book.shelf === Object.keys(obj)[0]
       })
     })
 
@@ -23,10 +27,10 @@ class ListBooks extends React.Component {
         </div>
         <div className="list-books-content">
           <div>
-             {bookShelvesTitles.map((title, index) => (
+            {bookShelvesTitles.map((obj, index) => (
                 <BookShelf
                   key={index}
-                  title={title}
+                  title={obj[Object.keys(obj)[0]]}
                   books={bookShelvesBooks[index]}
                 />
               ))
