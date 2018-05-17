@@ -6,6 +6,7 @@
     "react-router-dom": "^4.2.2"
   },
   "devDependencies": {
+    "eslint": "^4.19.1",
     "react-scripts": "1.1.4"
   },
   "scripts": {
