@@ -5,6 +5,10 @@ import { Route } from 'react-router-dom'
 import './App.css'
 
 class BooksApp extends React.Component {
+  state = {
+    title: "",
+    books: []
+  }
 
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
@@ -16,7 +20,7 @@ class BooksApp extends React.Component {
     return (
       <div className="app">
         <Route to='/' render={() => (
-          <ListBooks title="List Books"/>
+          <ListBooks title="MyReads" books={this.state.books}/>
         )}/>
         <Route to='/search' render={() => (
           <div className="search-books">
